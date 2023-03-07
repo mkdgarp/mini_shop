@@ -20104,7 +20104,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     while (1) switch (_context4.prev = _context4.next) {
                       case 0:
                         if (!result.isConfirmed) {
-                          _context4.next = 5;
+                          _context4.next = 4;
                           break;
                         }
                         _context4.next = 3;
@@ -20118,18 +20118,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             'tableCategory': tableCategory.value,
                             'product': products
                           })
+                        }).then(function (response) {
+                          return response.text();
+                        })
+                        // .then(data => console.log(data));
+                        .then(function (data) {
+                          // console.log("Success:", data);
+                          // if (response.ok) {
+
+                          // const savedOrder = await response.json();
+                          // order.value = savedOrder;
+                          // console.log(data)
+                          // let order_gogo = response.data;
+                          // alert(data)
+                          window.location.replace('/orders/' + data);
+                          // } else {
+
+                          //     alert(`ติดต่อ DEV ด่วน 0864331121 \n Failed to add product to order: ${response.status} ${response.statusText}`);
+                          //     btnLock.value = false
+                          // }
+                        })["catch"](function (error) {
+                          alert("\u0E15\u0E34\u0E14\u0E15\u0E48\u0E2D DEV \u0E14\u0E48\u0E27\u0E19 0864331121 \n Failed to add product to order: ".concat(response.status, " ").concat(response.statusText));
+                          btnLock.value = false;
+                          console.error("Error:", error);
                         });
                       case 3:
                         response = _context4.sent;
-                        if (response.ok) {
-                          // const savedOrder = await response.json();
-                          // order.value = savedOrder;
-                          window.location.replace('/orders/' + response);
-                        } else {
-                          alert("\u0E15\u0E34\u0E14\u0E15\u0E48\u0E2D DEV \u0E14\u0E48\u0E27\u0E19 0864331121 \n Failed to add product to order: ".concat(response.status, " ").concat(response.statusText));
-                          btnLock.value = false;
-                        }
-                      case 5:
+                      case 4:
                       case "end":
                         return _context4.stop();
                     }

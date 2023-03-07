@@ -182,17 +182,30 @@ async function createNewOrders() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ 'tableName': tableName.value, 'tableCategory': tableCategory.value, 'product': products }),
-            });
-            if (response.ok) {
+            }).then(response => response.text())
+                // .then(data => console.log(data));
+                .then((data) => {
+                    // console.log("Success:", data);
+                    // if (response.ok) {
 
-                // const savedOrder = await response.json();
-                // order.value = savedOrder;
-                window.location.replace('/orders/' + response);
-            } else {
+                        // const savedOrder = await response.json();
+                        // order.value = savedOrder;
+                        // console.log(data)
+                        // let order_gogo = response.data;
+                        // alert(data)
+                        window.location.replace('/orders/' + data);
+                    // } else {
 
-                alert(`ติดต่อ DEV ด่วน 0864331121 \n Failed to add product to order: ${response.status} ${response.statusText}`);
-                btnLock.value = false
-            }
+                    //     alert(`ติดต่อ DEV ด่วน 0864331121 \n Failed to add product to order: ${response.status} ${response.statusText}`);
+                    //     btnLock.value = false
+                    // }
+                })
+                .catch((error) => {
+                        alert(`ติดต่อ DEV ด่วน 0864331121 \n Failed to add product to order: ${response.status} ${response.statusText}`);
+                        btnLock.value = false
+                    console.error("Error:", error);
+                });
+
         }
     })
 
