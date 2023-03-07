@@ -1,5 +1,44 @@
 * {
-    background-color: green;
-    font-size: 14px;
+    /* background-color: green; */
+    font-size: 15px;
+    /* font-weight: bold; */
+    font-family: 'Mitr', sans-serif;
+
 }
 
+body {
+    background-color: #eaeef3;
+}
+
+.custom-card {
+    padding: 5px 10px;
+    border: none;
+    color: #333;
+    /* min-height: 130px; */
+}
+
+.btn-primary {
+    background: #284e81;
+    border-color: #234470;
+}
+
+.text-primary {
+    color: #2c65b3 !important;
+}
+.text-success {
+    color: #1caf27  !important
+}
+
+.btn-success {
+    background: #1adc76;
+    border-color: #1ad171;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none !important;
+    color: inherit !important;
+}

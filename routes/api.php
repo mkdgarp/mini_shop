@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Shop\OrdersController;
+use App\Http\Controllers\Shop\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,13 @@ use App\Http\Controllers\Shop\OrdersController;
 Route::middleware('api')->get('/getTodayOrders', [OrdersController::class, 'getTodayOrders']);
 Route::middleware('api')->get('/getCurrentOrders', [OrdersController::class, 'getCurrentOrders']);
 Route::middleware('api')->get('/getAllOrders', [OrdersController::class, 'getAllOrders']);
+
+Route::middleware('api')->get('/fetch_product', [ProductsController::class, 'getAllProduct_createOrders']);
+Route::middleware('api')->post('/createNewOrders', [OrdersController::class, 'createNewOrders']);
+
+Route::middleware('api')->get('/getDataDashboard', [OrdersController::class, 'getDataDashboard']);
+Route::middleware('api')->get('/getOrdersByID', [OrdersController::class, 'getOrdersByID']);
+
+Route::middleware('api')->post('/updateProderByOrders', [OrdersController::class, 'updateProderByOrders']);
+
+Route::middleware('api')->get('/clearcache', [OrdersController::class, 'clearcache']);
