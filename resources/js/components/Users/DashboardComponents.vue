@@ -42,7 +42,7 @@
                             รายการ</span>
                     </div>
                     <hr class="my-1">
-                    <div class="scroll-current-orders">
+                    <div class="scroll-current-orders" v-if="dataCurrent.data">
                         <div class="row" v-for="(datas, key) in dataCurrent.data" :key="key">
                             <div class="col-12">
                                 <div class="p-2 m-1 d-flex w-100 align-items-center active-current-orders">
@@ -111,6 +111,9 @@
                                 </div>
                             </div>
                         </div> -->
+                    </div>
+                    <div v-else>
+                        <h5 class="text-center d-block text-primary py-2">ไม่มีออเดอร์ที่เปิดอยู่</h5>
                     </div>
                 </div>
             </div>

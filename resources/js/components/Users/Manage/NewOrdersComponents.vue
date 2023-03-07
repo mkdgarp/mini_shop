@@ -187,7 +187,7 @@ async function createNewOrders() {
 
                 // const savedOrder = await response.json();
                 // order.value = savedOrder;
-                window.location.replace('/orders/' + response.data);
+                window.location.replace('/orders/' + response);
             } else {
 
                 alert(`ติดต่อ DEV ด่วน 0864331121 \n Failed to add product to order: ${response.status} ${response.statusText}`);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Artisan;
 
 class OrdersController extends Controller
 {
@@ -208,27 +209,22 @@ class OrdersController extends Controller
             'backupProduct' => $backupProduct
         ]);
     }
-    // public function getTodayOrders()
-    // {
-    //     $orders = DB::table('orders')
-    //         // ->join('orders_detail','orders_detail.orders_id','=','orders.id')
-    //         ->whereDate('orders.create_at', NOW())
-    //         ->get();
+    public function getTodayOrders(Request $request)
+    {
+        if ($request->key === 'tbj2iPMzo8') {
 
-    //     foreach ($orders as $order_where) {
-    //         $orders_detail = DB::table('orders_detail')
-    //             ->select('orders_detail.orders_id', 'orders_detail.product_id', 'orders_detail.amount', 'product.name')
-    //             ->join('product', 'product.id', '=', 'orders_detail.product_id')
-    //             ->where('orders_detail.orders_id', $order_where->id)->get();
-    //         $data_arr[] = [
-    //             'customers_name' => $order_where->customers_name,
-    //             'is_checkbill' => $order_where->is_checkbill,
-    //             'orders_detail' => $orders_detail
-    //         ];
-    //     }
+            $exitCode = Artisan::call('route:clear');
+            $exitCode = Artisan::call('cache:clear');
+            $exitCode = Artisan::call('route:cache');
+            $exitCode = Artisan::call('config:cache');
+            $exitCode = Artisan::call('storage:link');
+            $exitCode = Artisan::call('optimize');
+            return 'DONE'; //Return anything
+        }
 
-    //     return response()->json(['data_orders' => $data_arr], 200);
-    // }
+        // return response()->json(['data_orders' => $data_arr], 200);
+        return 'done';
+    }
 
     // public function getAllOrders()
     // {
