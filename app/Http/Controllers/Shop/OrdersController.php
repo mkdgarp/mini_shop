@@ -81,6 +81,7 @@ class OrdersController extends Controller
                     'order_name' => $order_where->customers_name,
                     'is_delivery' => $order_where->is_delivery,
                     'order_id' => $orders_details->orders_id,
+                    'create_at' => $order_where->create_at,
                     'total' => $total_price2,
                     'count_product' => $count_product
                 ];
@@ -102,6 +103,7 @@ class OrdersController extends Controller
                     'order_name' => $order_where->customers_name,
                     'is_delivery' => $order_where->is_delivery,
                     'order_id' => $orders_details->orders_id,
+                    'create_at' => $order_where->create_at,
                     'total' => $total_price2,
                     'count_product' => $count_product
                 ];
@@ -209,22 +211,99 @@ class OrdersController extends Controller
             'backupProduct' => $backupProduct
         ]);
     }
-    public function getTodayOrders(Request $request)
-    {
-        if ($request->key === 'tbj2iPMzo8') {
 
-            $exitCode = Artisan::call('route:clear');
-            $exitCode = Artisan::call('cache:clear');
-            $exitCode = Artisan::call('route:cache');
-            $exitCode = Artisan::call('config:cache');
-            $exitCode = Artisan::call('storage:link');
-            $exitCode = Artisan::call('optimize');
-            return 'DONE'; //Return anything
+    public function checkBillOrders(Request $request)
+    {
+        // orders_id
+        $cccc = DB::table('orders')->where('id', $request->orders_id)->where('is_checkbill', 0)->get();
+        if (count($cccc)) {
+            DB::table('orders')->where('id', $request->orders_id)->update(['is_checkbill' => 1]);
+            return response()->json(['msg' => 'success'], 200);
+        } else {
+            return response()->json(['msg' => 'failed'], 200);
+        }
+    }
+
+    public function getHistory()
+    {
+        $getOrderCurrent = DB::table('orders')
+            // ->join('orders_detail','orders_detail.orders_id','=','orders.id')
+            // ->whereDate('orders.create_at', NOW())
+            ->where('is_checkbill', 1)
+            ->get();
+
+        $total_price2 = 0;
+        $count_product = 0;
+        foreach ($getOrderCurrent as $key_2 => $order_where) {
+            if ($order_where->is_delivery == 0) {
+                $orders_detail = DB::table('orders_detail')
+                    // ->select('orders_detail.product_id', 'orders_detail.amount')
+                    ->join('product', 'product.id', '=', 'orders_detail.product_id')
+                    ->where('orders_detail.orders_id', $order_where->id)->get();
+                // $arr_current[$key_2] = $orders_detail;
+                foreach ($orders_detail as $orders_details) {
+                    $getprice = DB::table('product')->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')->where('product.id', $orders_details->product_id)->where('orders_detail.orders_id', $order_where->id)->get();
+                    $total_price2 += $getprice->pluck('price')[0] * $orders_details->amount;
+
+                    $count_product += count($getprice);
+                }
+                $arr_current[] = [
+                    'order_name' => $order_where->customers_name,
+                    'is_delivery' => $order_where->is_delivery,
+                    'order_id' => $orders_details->orders_id,
+                    'create_at' => $order_where->create_at,
+                    'total' => $total_price2,
+                    'count_product' => $count_product
+                ];
+                $total_price2 = 0;
+                $count_product = 0;
+            } else { // delivery
+                $orders_detail = DB::table('orders_detail')
+                    // ->select('orders_detail.product_id', 'orders_detail.amount')
+                    ->join('product', 'product.id', '=', 'orders_detail.product_id')
+                    ->where('orders_detail.orders_id', $order_where->id)->get();
+                // $arr_current[] = $orders_detail;
+                foreach ($orders_detail as $orders_details) {
+                    $getprice = DB::table('product')->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')->where('product.id', $orders_details->product_id)->where('orders_detail.orders_id', $order_where->id)->get();
+                    $total_price2 += $getprice->pluck('delivery_price')[0] * $orders_details->amount;
+
+                    $count_product += count($getprice);
+                }
+                $arr_current[] = [
+                    'order_name' => $order_where->customers_name,
+                    'is_delivery' => $order_where->is_delivery,
+                    'order_id' => $orders_details->orders_id,
+                    'create_at' => $order_where->create_at,
+                    'total' => $total_price2,
+                    'count_product' => $count_product
+                ];
+                $total_price2 = 0;
+                $count_product = 0;
+            }
         }
 
-        // return response()->json(['data_orders' => $data_arr], 200);
-        return 'done';
+
+        return response()->json([
+            'orderCurrentNow' => count($getOrderCurrent),
+            'dataCurrent' => $arr_current
+        ]);
     }
+    // public function getTodayOrders(Request $request)
+    // {
+    //     if ($request->key === 'tbj2iPMzo8') {
+
+    //         $exitCode = Artisan::call('route:clear');
+    //         $exitCode = Artisan::call('cache:clear');
+    //         $exitCode = Artisan::call('route:cache');
+    //         $exitCode = Artisan::call('config:cache');
+    //         $exitCode = Artisan::call('storage:link');
+    //         $exitCode = Artisan::call('optimize');
+    //         return 'DONE'; //Return anything
+    //     }
+
+    //     // return response()->json(['data_orders' => $data_arr], 200);
+    //     return 'done';
+    // }
 
     // public function getAllOrders()
     // {

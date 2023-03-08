@@ -165,7 +165,7 @@ async function createNewOrders() {
     btnLock.value = true
 
     Swal.fire({
-        title: 'ยืนยันการสร้างออเดอร์ใหม่?',
+        text: 'ยืนยันการสร้างออเดอร์ใหม่?',
         //   text: "You won't be able to revert this!",
         icon: 'question',
         showCancelButton: true,

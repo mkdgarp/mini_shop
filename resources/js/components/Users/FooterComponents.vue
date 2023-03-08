@@ -1,21 +1,39 @@
 <template>
-    <div class="demo-version">ระบบเวอร์ชั่นเบต้า 1.0.5</div>
+    <div class="demo-version">ระบบเวอร์ชั่นเบต้า 1.2.0</div>
     <footer class="footer-setting ">
         <div class="d-block w-100 text-center">
             <ul class="d-flex w-100 justify-content-around h-100 align-items-center fw-normal">
-                <a href="/"><li>หน้าแรก</li></a>
-                <a href="/create_orders"><li>สร้าง<br>ออเดอร์ใหม่</li></a>
-                <a href="/"><li>ออเดอร์วันนี้</li></a>
+                <a href="/">
+                    <li class="li_menu" @click="activeItemMenu('home')"><i
+                            class="fas fa-home-lg-alt fa-2x-custom"></i><br>หน้าแรก</li>
+                </a>
+                <a href="/create_orders">
+                    <li class="li_menu"><i class="fas fa-plus-square fa-2x-custom"></i><br>สร้างออเดอร์</li>
+                </a>
+                <!-- <a href="/addnewproducts"><li>สร้าง<br>สินค้าใหม่ในระบบ</li></a> -->
+                <a href="/addnewproducts">
+                    <li class="li_menu"><i class="fas fa-tasks fa-2x-custom"></i><br>จัดการสินค้า</li>
+                </a>
+                <a href="/history">
+                    <li class="li_menu"><i class="fas fa-history fa-2x-custom"></i><br>ประวัติการขาย</li>
+                </a>
 
-                <!-- <li></li> -->
-                <!-- <li>asdasda</li> -->
             </ul>
         </div>
     </footer>
 </template>
 
 <script setup>
-
+import { ref } from 'vue';
+const activeItem = ref('')
+const activeItemMenu = async (namemenu) => {
+    localStorage.setItem('activeItemMenu', namemenu)
+    activeItem.vlue = localStorage.getItem('activeItemMenu')
+}
+const check_menu = async () => {
+    activeItem.val = localStorage.getItem('activeItemMenu')
+}
+check_menu()
 </script>
 
 <style scoped>
@@ -43,5 +61,18 @@ ul {
     bottom: 65px;
     color: #00000026;
     right: 10px;
+}
+
+.li_menu {
+    font-size: 12px;
+}
+
+.fa-2x-custom {
+    font-size: 18px;
+}
+
+.li_menu.active {
+    color: #2b568f;
+    font-weight: 500;
 }
 </style>

@@ -45,7 +45,8 @@
                     <div class="scroll-current-orders" v-if="dataCurrent.data">
                         <div class="row" v-for="(datas, key) in dataCurrent.data" :key="key">
                             <div class="col-12">
-                                <div class="p-2 m-1 d-flex w-100 align-items-center active-current-orders">
+                                <div
+                                    :class="(datas.is_delivery == 0) ? 'p-2 m-1 d-flex w-100 align-items-center active-current-orders' : 'p-2 m-1 d-flex w-100 align-items-center active-current-orders-lineman'">
                                     <div>
                                         <div v-if="datas.is_delivery == 0"><i
                                                 class="fas fa-users text-primary"></i>&nbsp;โต๊ะ <span>{{ datas.order_name
@@ -59,58 +60,18 @@
                                             &nbsp;
                                             <span class="detail-current-show">จำนวนเงิน {{ datas.total }} ฿</span>
                                         </div>
+                                        <div class="detail-create-at">
+                                            สร้างเมื่อ : {{ datas.create_at }}
+                                        </div>
                                     </div>
-                                    <a class=" ms-auto" :href="'/orders/' + datas.order_id"><button
-                                            class="btn btn-primary ">จัดการ</button></a>
+                                    <a class=" ms-auto" :href="'/orders/' + datas.order_id">
+                                        <button v-if="datas.is_delivery == 0" class="btn btn-primary ">จัดการ</button>
+                                        <button v-else class="btn btn-success ">จัดการ</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="row">
-                            <div class="col-12">
-                                <div class="p-2 m-1 d-flex w-100 align-items-center active-current-orders-lineman">
-                                    <div>
-                                        <i class="fas fa-car text-success"></i>&nbsp;เดลิเวอรี่ <span>ไลน์แมน</span>
-                                        <div class="d-flex">
-                                            <span class="detail-current-show">สินค้า 8 รายการ</span>
-                                            &nbsp;
-                                            <span class="detail-current-show">จำนวนเงิน 250฿</span>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-success ms-auto ">จัดการ</button>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- <div class="row">
-                            <div class="col-12">
-                                <div class="p-2 m-1 d-flex w-100 align-items-center active-current-orders-lineman">
-                                    <div>
-                                        <i class="fas fa-car text-success"></i>&nbsp;เดลิเวอรี่ <span>แกรปฟู๊ด</span>
-                                        <div class="d-flex">
-                                            <span class="detail-current-show">สินค้า 4 รายการ</span>
-                                            &nbsp;
-                                            <span class="detail-current-show">จำนวนเงิน 75฿</span>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-success ms-auto ">จัดการ</button>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- <div class="row" v-for="data in 3">
-                            <div class="col-12">
-                                <div class="p-2 m-1 d-flex w-100 align-items-center active-current-orders">
-                                    <div>
-                                        <i class="fas fa-users text-primary"></i>&nbsp;โต๊ะ <span>ทดสอบระบบ {{ data
-                                        }}</span>
-                                        <div class="d-flex">
-                                            <span class="detail-current-show">สินค้า {{ 2 + data }} รายการ</span>
-                                            &nbsp;
-                                            <span class="detail-current-show">จำนวนเงิน 415฿</span>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary ms-auto ">จัดการ</button>
-                                </div>
-                            </div>
-                        </div> -->
+                        
                     </div>
                     <div v-else>
                         <h5 class="text-center d-block text-primary py-2">ไม่มีออเดอร์ที่เปิดอยู่</h5>
@@ -123,7 +84,7 @@
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue';
-const timeCountdownRefresh = ref(15)
+const timeCountdownRefresh = ref(60)
 let intervalId
 
 const orderToday = ref(0)
@@ -137,7 +98,7 @@ const fncCountdown = async () => {
         if (timeCountdownRefresh.value < 0) {
             getDataDashboard()
             clearInterval(intervalId)
-            timeCountdownRefresh.value = 15
+            timeCountdownRefresh.value = 60
             fncCountdown()
         }
     }, 1000)
@@ -157,87 +118,18 @@ const getDataDashboard = async () => {
     }
 }
 
+function formatThaiDateTime(date) {
+  const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+  const dateString = date.toLocaleDateString("th-TH", options);
+  const timeString = date.toLocaleTimeString("th-TH");
+  return `${dateString} ${timeString}`;
+}
+
 getDataDashboard()
 fncCountdown()
 
 </script>
 
 <style scoped>
-.topic-refresh {
-    font-size: 12px;
-    color: #183153;
-}
 
-.topic-all-current-count {
-    color: #183153;
-}
-
-.show-detail-card-dash {
-    display: flex;
-    height: 90px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 35px;
-    line-height: 1;
-    color: #183153;
-}
-
-.active-current-orders {
-    background: #0000000d;
-    border-radius: 5px;
-}
-
-.active-current-orders-lineman {
-    background: #89ffc37a;
-    border-radius: 5px;
-}
-
-.detail-current-show {
-    font-size: 12px;
-    font-weight: 400;
-}
-
-.scroll-current-orders {
-    /*max-height: 360px;
-    overflow-y: auto;*/
-}
-
-.blobs-container {
-    display: flex;
-}
-
-.blob {
-    background: black;
-    border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
-    margin: 7px;
-    height: 10px;
-    width: 10px;
-    transform: scale(1);
-    animation: pulse-black 2s infinite;
-}
-
-.blob.green {
-    background: #1caf27;
-    box-shadow: 0 0 0 0 #1caf27;
-    animation: pulse-green 1.5s infinite;
-}
-
-@keyframes pulse-green {
-    0% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 #1caf26a4;
-    }
-
-    70% {
-        transform: scale(1);
-        box-shadow: 0 0 0 10px hsla(124, 72%, 40%, 0);
-    }
-
-    100% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 #1caf2600;
-    }
-}
 </style>

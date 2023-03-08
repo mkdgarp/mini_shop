@@ -3,8 +3,7 @@
         <div class="row">
             <div class="col-12">
                 <span>จัดการออเดอร์ </span>
-                <span v-if="dataCurrent?.data" class="text-primary fw-bold">โต๊ะ {{ dataCurrent?.data[0]?.order_name
-                }}</span>
+                <span v-if="dataCurrent?.data" class=""><b class="text-primary" v-if="dataCurrent?.data[0]?.is_delivery == 0">โต๊ะ {{ dataCurrent?.data[0]?.order_name}}</b><b class="text-success" v-else>เดลิเวอรี่ {{ dataCurrent?.data[0]?.order_name}}</b></span>
             </div>
 
 
@@ -52,7 +51,7 @@
                     <div class="py-2">สถานะออเดอร์
                         <span v-if="dataCurrent?.data[0]?.is_checkbill == 0"
                             class="fw-bold text-danger">ยังไม่ชำระเงิน</span>
-                        <span v-else class="fw-bold  text-primary">ชำระเงินแล้ว</span>
+                        <span v-else class="fw-bold text-success">ชำระเงินแล้ว</span>
 
                     </div>
                     <table class="table table-bordered table-striped text-center align-middle">
@@ -94,7 +93,11 @@
                         </tfoot>
                     </table>
                     <hr class="my-2">
-                    <button class="btn btn-success">เช็คบิล</button>
+                    <button v-if="dataCurrent?.data[0]?.is_checkbill == 0" class="btn btn-success"
+                        @click="checkBillOrders(dataCurrent?.data[0]?.order_id)">เช็คบิล</button>
+                        <button v-else class="btn btn-primary">
+                            <i class="fas fa-print"></i>&nbsp;พิมพ์ใบเสร็จ
+                        </button>
                 </div>
             </div>
         </div>
@@ -164,7 +167,7 @@ async function changeForUpdate(product_id, orders_id, amount) {
         return;
     }
     Swal.fire({
-        title: 'ยินยันการปรับจำนวนสินค้า?',
+        text: 'ยินยันการปรับจำนวนสินค้า?',
         //   text: "You won't be able to revert this!",
         icon: 'question',
         showCancelButton: true,
@@ -185,7 +188,7 @@ async function changeForUpdate(product_id, orders_id, amount) {
                     if (response.data == 'success') {
                         Swal.fire({
                             icon: 'success',
-                            title: 'เปลี่ยนแปลงจำนวนสำเร็จ',
+                            text: 'เปลี่ยนแปลงจำนวนสำเร็จ',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -201,6 +204,54 @@ async function changeForUpdate(product_id, orders_id, amount) {
         }
     })
 
+}
+
+const checkBillOrders = async (orders_id) => {
+    Swal.fire({
+        text: 'ยืนยันการเช็คบิล?',
+        //   text: "You won't be able to revert this!",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#1adc76',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ยกเลิก'
+    }).then(async (result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            axios.post(`/api/checkBillOrders`, {
+                orders_id: orders_id,
+            })
+                .then(response => {
+
+                    if (response.data.msg == 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'เช็คบิลสำเร็จ',
+                            showConfirmButton: false,
+                            timer: 1250
+                        }).then((resp) => {
+                            window.location.reload()
+                        })
+
+                        // getOrderByID()
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'ไม่พบหมายเลขออเดอร์นี้ หรือ ออเดอร์ถูกเช็คบิลไปแล้ว',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+
+                })
+                .catch(error => {
+                    alert(error);
+                });
+        } else {
+            window.location.reload()
+        }
+    })
 }
 getOrderByID()
 </script>

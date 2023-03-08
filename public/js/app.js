@@ -20579,62 +20579,63 @@ var _hoisted_33 = {
   "class": "col-12"
 };
 var _hoisted_34 = {
-  "class": "p-2 m-1 d-flex w-100 align-items-center active-current-orders"
-};
-var _hoisted_35 = {
   key: 0
 };
-var _hoisted_36 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_35 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": "fas fa-users text-primary"
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" โต๊ะ ");
-var _hoisted_38 = {
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" โต๊ะ ");
+var _hoisted_37 = {
   key: 1
 };
-var _hoisted_39 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_38 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": "fas fa-car text-success"
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" เดลิเวอรี่ ");
-var _hoisted_41 = {
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" เดลิเวอรี่ ");
+var _hoisted_40 = {
   "class": "d-flex"
 };
-var _hoisted_42 = {
+var _hoisted_41 = {
   "class": "detail-current-show"
 };
-var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   ");
-var _hoisted_44 = {
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   ");
+var _hoisted_43 = {
   "class": "detail-current-show"
 };
-var _hoisted_45 = ["href"];
-var _hoisted_46 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "btn btn-primary"
-  }, "จัดการ", -1 /* HOISTED */);
-});
-var _hoisted_47 = [_hoisted_46];
-var _hoisted_48 = {
+var _hoisted_44 = ["href"];
+var _hoisted_45 = {
+  key: 0,
+  "class": "btn btn-primary"
+};
+var _hoisted_46 = {
+  key: 1,
+  "class": "btn btn-success"
+};
+var _hoisted_47 = {
   key: 1
 };
-var _hoisted_49 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_48 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
     "class": "text-center d-block text-primary py-2"
   }, "ไม่มีออเดอร์ที่เปิดอยู่", -1 /* HOISTED */);
 });
-var _hoisted_50 = [_hoisted_49];
+var _hoisted_49 = [_hoisted_48];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("อัพเดตข้อมูลหน้านี้ในอีก " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.timeCountdownRefresh) + " วินาที", 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.orderToday), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.incomeCal) + " ฿", 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.productAll), 1 /* TEXT */)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.orderCurrentNow), 1 /* TEXT */), _hoisted_30])]), _hoisted_31, $setup.dataCurrent.data ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_32, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.dataCurrent.data, function (datas, key) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "row",
       key: key
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [datas.is_delivery == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, [_hoisted_36, _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(datas.order_name), 1 /* TEXT */)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, [_hoisted_39, _hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(datas.order_name), 1 /* TEXT */)])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_42, "สินค้า " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(datas.count_product) + " รายการ", 1 /* TEXT */), _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_44, "จำนวนเงิน " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(datas.total) + " ฿", 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(datas.is_delivery == 0 ? 'p-2 m-1 d-flex w-100 align-items-center active-current-orders' : 'p-2 m-1 d-flex w-100 align-items-center active-current-orders-lineman')
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [datas.is_delivery == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, [_hoisted_35, _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(datas.order_name), 1 /* TEXT */)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_37, [_hoisted_38, _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(datas.order_name), 1 /* TEXT */)])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_41, "สินค้า " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(datas.count_product) + " รายการ", 1 /* TEXT */), _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_43, "จำนวนเงิน " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(datas.total) + " ฿", 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       "class": "ms-auto",
       href: '/orders/' + datas.order_id
-    }, _hoisted_47, 8 /* PROPS */, _hoisted_45)])])]);
-  }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\">\r\n                            <div class=\"col-12\">\r\n                                <div class=\"p-2 m-1 d-flex w-100 align-items-center active-current-orders-lineman\">\r\n                                    <div>\r\n                                        <i class=\"fas fa-car text-success\"></i>&nbsp;เดลิเวอรี่ <span>ไลน์แมน</span>\r\n                                        <div class=\"d-flex\">\r\n                                            <span class=\"detail-current-show\">สินค้า 8 รายการ</span>\r\n                                            &nbsp;\r\n                                            <span class=\"detail-current-show\">จำนวนเงิน 250฿</span>\r\n                                        </div>\r\n                                    </div>\r\n                                    <button class=\"btn btn-success ms-auto \">จัดการ</button>\r\n                                </div>\r\n                            </div>\r\n                        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\">\r\n                            <div class=\"col-12\">\r\n                                <div class=\"p-2 m-1 d-flex w-100 align-items-center active-current-orders-lineman\">\r\n                                    <div>\r\n                                        <i class=\"fas fa-car text-success\"></i>&nbsp;เดลิเวอรี่ <span>แกรปฟู๊ด</span>\r\n                                        <div class=\"d-flex\">\r\n                                            <span class=\"detail-current-show\">สินค้า 4 รายการ</span>\r\n                                            &nbsp;\r\n                                            <span class=\"detail-current-show\">จำนวนเงิน 75฿</span>\r\n                                        </div>\r\n                                    </div>\r\n                                    <button class=\"btn btn-success ms-auto \">จัดการ</button>\r\n                                </div>\r\n                            </div>\r\n                        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\" v-for=\"data in 3\">\r\n                            <div class=\"col-12\">\r\n                                <div class=\"p-2 m-1 d-flex w-100 align-items-center active-current-orders\">\r\n                                    <div>\r\n                                        <i class=\"fas fa-users text-primary\"></i>&nbsp;โต๊ะ <span>ทดสอบระบบ {{ data\r\n                                        }}</span>\r\n                                        <div class=\"d-flex\">\r\n                                            <span class=\"detail-current-show\">สินค้า {{ 2 + data }} รายการ</span>\r\n                                            &nbsp;\r\n                                            <span class=\"detail-current-show\">จำนวนเงิน 415฿</span>\r\n                                        </div>\r\n                                    </div>\r\n                                    <button class=\"btn btn-primary ms-auto \">จัดการ</button>\r\n                                </div>\r\n                            </div>\r\n                        </div> ")])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_48, _hoisted_50))])])])])], 64 /* STABLE_FRAGMENT */);
+    }, [datas.is_delivery == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_45, "จัดการ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_46, "จัดการ"))], 8 /* PROPS */, _hoisted_44)], 2 /* CLASS */)])]);
+  }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\">\r\n                            <div class=\"col-12\">\r\n                                <div class=\"p-2 m-1 d-flex w-100 align-items-center active-current-orders-lineman\">\r\n                                    <div>\r\n                                        <i class=\"fas fa-car text-success\"></i>&nbsp;เดลิเวอรี่ <span>ไลน์แมน</span>\r\n                                        <div class=\"d-flex\">\r\n                                            <span class=\"detail-current-show\">สินค้า 8 รายการ</span>\r\n                                            &nbsp;\r\n                                            <span class=\"detail-current-show\">จำนวนเงิน 250฿</span>\r\n                                        </div>\r\n                                    </div>\r\n                                    <button class=\"btn btn-success ms-auto \">จัดการ</button>\r\n                                </div>\r\n                            </div>\r\n                        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\">\r\n                            <div class=\"col-12\">\r\n                                <div class=\"p-2 m-1 d-flex w-100 align-items-center active-current-orders-lineman\">\r\n                                    <div>\r\n                                        <i class=\"fas fa-car text-success\"></i>&nbsp;เดลิเวอรี่ <span>แกรปฟู๊ด</span>\r\n                                        <div class=\"d-flex\">\r\n                                            <span class=\"detail-current-show\">สินค้า 4 รายการ</span>\r\n                                            &nbsp;\r\n                                            <span class=\"detail-current-show\">จำนวนเงิน 75฿</span>\r\n                                        </div>\r\n                                    </div>\r\n                                    <button class=\"btn btn-success ms-auto \">จัดการ</button>\r\n                                </div>\r\n                            </div>\r\n                        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\" v-for=\"data in 3\">\r\n                            <div class=\"col-12\">\r\n                                <div class=\"p-2 m-1 d-flex w-100 align-items-center active-current-orders\">\r\n                                    <div>\r\n                                        <i class=\"fas fa-users text-primary\"></i>&nbsp;โต๊ะ <span>ทดสอบระบบ {{ data\r\n                                        }}</span>\r\n                                        <div class=\"d-flex\">\r\n                                            <span class=\"detail-current-show\">สินค้า {{ 2 + data }} รายการ</span>\r\n                                            &nbsp;\r\n                                            <span class=\"detail-current-show\">จำนวนเงิน 415฿</span>\r\n                                        </div>\r\n                                    </div>\r\n                                    <button class=\"btn btn-primary ms-auto \">จัดการ</button>\r\n                                </div>\r\n                            </div>\r\n                        </div> ")])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_47, _hoisted_49))])])])])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -20655,7 +20656,7 @@ __webpack_require__.r(__webpack_exports__);
 var _withScopeId = function _withScopeId(n) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-0c319483"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
 };
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"demo-version\" data-v-0c319483>ระบบเวอร์ชั่นเบต้า 1.0.5</div><footer class=\"footer-setting\" data-v-0c319483><div class=\"d-block w-100 text-center\" data-v-0c319483><ul class=\"d-flex w-100 justify-content-around h-100 align-items-center fw-normal\" data-v-0c319483><a href=\"/\" data-v-0c319483><li data-v-0c319483>หน้าแรก</li></a><a href=\"/create_orders\" data-v-0c319483><li data-v-0c319483>สร้าง<br data-v-0c319483>ออเดอร์ใหม่</li></a><a href=\"/\" data-v-0c319483><li data-v-0c319483>ออเดอร์วันนี้</li></a><!-- &lt;li&gt;&lt;/li&gt; --><!-- &lt;li&gt;asdasda&lt;/li&gt; --></ul></div></footer>", 2);
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"demo-version\" data-v-0c319483>ระบบเวอร์ชั่นเบต้า 1.2.0</div><footer class=\"footer-setting\" data-v-0c319483><div class=\"d-block w-100 text-center\" data-v-0c319483><ul class=\"d-flex w-100 justify-content-around h-100 align-items-center fw-normal\" data-v-0c319483><a href=\"/\" data-v-0c319483><li data-v-0c319483>หน้าแรก</li></a><a href=\"/create_orders\" data-v-0c319483><li data-v-0c319483>สร้าง<br data-v-0c319483>ออเดอร์ใหม่</li></a><a href=\"/\" data-v-0c319483><li data-v-0c319483>ออเดอร์วันนี้</li></a><!-- &lt;li&gt;&lt;/li&gt; --><!-- &lt;li&gt;asdasda&lt;/li&gt; --></ul></div></footer>", 2);
 function render(_ctx, _cache) {
   return _hoisted_1;
 }

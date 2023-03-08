@@ -3,6 +3,9 @@ import Index from "../components/Index.vue"
 import Home from "../components/Users/Home.vue"
 import OrdersComponents from "../components/Users/Manage/OrdersComponents.vue"
 import NewOrdersComponents from "../components/Users/Manage/NewOrdersComponents.vue"
+import AddNewProductsComponenets from "../components/Users/Manage/AddNewProductsComponenets.vue"
+import HistoryComponents from "../components/Users/Manage/HistoryComponents.vue"
+
 const routes = [
     {
         path: '/',
@@ -17,6 +20,14 @@ const routes = [
     {
         path: '/create_orders',
         component: NewOrdersComponents
+    },
+    {
+        path: '/addnewproducts',
+        component: AddNewProductsComponenets
+    },
+    {
+        path: '/history',
+        component: HistoryComponents
     },
 ]
 
