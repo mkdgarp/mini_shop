@@ -288,22 +288,22 @@ class OrdersController extends Controller
             'dataCurrent' => $arr_current
         ]);
     }
-    // public function getTodayOrders(Request $request)
-    // {
-    //     if ($request->key === 'tbj2iPMzo8') {
+    public function getTodayOrders(Request $request)
+    {
+        if ($request->key === 'tbj2iPMzo8') {
 
-    //         $exitCode = Artisan::call('route:clear');
-    //         $exitCode = Artisan::call('cache:clear');
-    //         $exitCode = Artisan::call('route:cache');
-    //         $exitCode = Artisan::call('config:cache');
-    //         $exitCode = Artisan::call('storage:link');
-    //         $exitCode = Artisan::call('optimize');
-    //         return 'DONE'; //Return anything
-    //     }
+            $exitCode = Artisan::call('route:clear');
+            $exitCode = Artisan::call('cache:clear');
+            $exitCode = Artisan::call('route:cache');
+            $exitCode = Artisan::call('config:cache');
+            $exitCode = Artisan::call('storage:link');
+            $exitCode = Artisan::call('optimize');
+            return 'DONE'; //Return anything
+        }
 
-    //     // return response()->json(['data_orders' => $data_arr], 200);
-    //     return 'done';
-    // }
+        // return response()->json(['data_orders' => $data_arr], 200);
+        return 'done';
+    }
 
     // public function getAllOrders()
     // {
