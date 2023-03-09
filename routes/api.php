@@ -24,7 +24,8 @@ use App\Http\Controllers\Shop\ProductsController;
 // Route::middleware('api')->post('/GenerateQRCode', [DonateController::class, 'index']);
 Route::middleware('api')->get('/getTodayOrders', [OrdersController::class, 'getTodayOrders']);
 Route::middleware('api')->get('/getCurrentOrders', [OrdersController::class, 'getCurrentOrders']);
-Route::middleware('api')->get('/getAllOrders', [OrdersController::class, 'getAllOrders']);
+
+Route::middleware('api')->get('/getproductallCount', [OrdersController::class, 'getproductallCount']);
 
 Route::middleware('api')->get('/fetch_product', [ProductsController::class, 'getAllProduct_createOrders']);
 Route::middleware('api')->post('/createNewOrders', [OrdersController::class, 'createNewOrders']);

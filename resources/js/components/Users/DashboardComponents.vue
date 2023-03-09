@@ -109,12 +109,21 @@ const getDataDashboard = async () => {
         const data = await response.json();
         // console.log(data)
         orderToday.value = data.orderToday;
-        productAll.value = data.productAll;
+        // productAll.value = data.productAll;
         incomeCal.value = data.incomeCal;
         dataCurrent.data = data.dataCurrent
         orderCurrentNow.value = data.orderCurrentNow
     } else {
         console.error(`Failed to fetch products: ${response.status} ${response.statusText}`);
+    }
+}
+
+const getproductallCount = async() => {
+    const response = await fetch('/api/getproductallCount')
+    if(response.ok) {
+        const data = await response.json()
+
+        productAll.value = data.productAll
     }
 }
 
@@ -126,6 +135,7 @@ function formatThaiDateTime(date) {
 }
 
 getDataDashboard()
+getproductallCount()
 fncCountdown()
 
 </script>

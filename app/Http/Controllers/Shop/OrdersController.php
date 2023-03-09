@@ -71,6 +71,7 @@ class OrdersController extends Controller
                     ->join('product', 'product.id', '=', 'orders_detail.product_id')
                     ->where('orders_detail.orders_id', $order_where->id)->get();
                 // $arr_current[$key_2] = $orders_detail;
+                
                 foreach ($orders_detail as $orders_details) {
                     $getprice = DB::table('product')->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')->where('product.id', $orders_details->product_id)->where('orders_detail.orders_id', $order_where->id)->get();
                     $total_price2 += $getprice->pluck('price')[0] * $orders_details->amount;
@@ -115,11 +116,17 @@ class OrdersController extends Controller
 
         return response()->json([
             'orderToday' => count($orderToday),
-            'productAll' => count($productAll),
+            // 'productAll' => count($productAll),
             'incomeCal' => $total_price,
             'orderCurrentNow' => count($getOrderCurrent),
             'dataCurrent' => $arr_current
         ]);
+    }
+
+    public function getproductallCount(){
+        $count_product_new = DB::table('product')->get();
+                $count_product = count($count_product_new);
+                return response()->json(['productAll'=>$count_product]);
     }
 
     public function getOrdersByID(Request $request)
