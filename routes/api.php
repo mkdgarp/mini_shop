@@ -43,3 +43,6 @@ Route::middleware('api')->post('/addNewProducts', [ProductsController::class, 'a
 Route::middleware('api')->post('/checkBillOrders', [OrdersController::class, 'checkBillOrders']);
 
 Route::middleware('api')->get('/getHistory', [OrdersController::class, 'getHistory']);
+Route::middleware('api')->get('/getAllProduct_Manage', [ProductsController::class, 'getAllProduct_Manage']);
+
+Route::middleware('api')->post('/disableProduct', [ProductsController::class, 'disableProduct']);

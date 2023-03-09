@@ -1,5 +1,5 @@
 <template>
-    <div class="demo-version">ระบบเวอร์ชั่นเบต้า 1.2.0</div>
+    <div class="demo-version">ระบบเวอร์ชั่นเบต้า 1.3.3</div>
     <footer class="footer-setting ">
         <div class="d-block w-100 text-center">
             <ul class="d-flex w-100 justify-content-around h-100 align-items-center fw-normal">
@@ -11,7 +11,7 @@
                     <li class="li_menu"><i class="fas fa-plus-square fa-2x-custom"></i><br>สร้างออเดอร์</li>
                 </a>
                 <!-- <a href="/addnewproducts"><li>สร้าง<br>สินค้าใหม่ในระบบ</li></a> -->
-                <a href="/addnewproducts">
+                <a href="/home_manageproduct">
                     <li class="li_menu"><i class="fas fa-tasks fa-2x-custom"></i><br>จัดการสินค้า</li>
                 </a>
                 <a href="/history">

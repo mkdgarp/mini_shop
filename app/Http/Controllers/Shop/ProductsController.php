@@ -10,7 +10,7 @@ class ProductsController extends Controller
 {
     public function getAllProduct_createOrders()
     {
-        $product = DB::table('product')->get();
+        $product = DB::table('product')->where('enable', 1)->get();
         return response()->json($product);
     }
 
@@ -35,12 +35,27 @@ class ProductsController extends Controller
             'price' => $request->price,
             'delivery_price' => $request->delivery_price,
             'product_group_id' => 1,
+            'enable' => 1,
             'create_at' => now(),
             'modify_at' => now(),
         ]);
 
         return response()->json(['msg' => 'success'], 200);
     }
+
+    public function getAllProduct_Manage()
+    {
+        $product = DB::table('product')->where('enable', 1)->get();
+        return response()->json($product);
+    }
+
+    public function disableProduct(Request $request)
+    {
+        DB::table('product')->where('enable', 1)->where('id', $request->product_id)->update(['enable' => 0]);
+        return 'success';
+    }
+
+
 
     public function getOwnerAll()
     {

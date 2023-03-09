@@ -11,6 +11,9 @@
                             รายการ</span>
                     </div>
                     <hr class="my-1">
+                    <div class="col-8 mx-auto my-2 mb-4 text-center"><label for=""
+                            class="text-center">ค้นหาตามวันที่</label><input class="form-control" type="date"
+                            v-model="datetimenow" placeholder="asdasdasd" @change="getHistory" min="2023-03-01" :max="new Date().toISOString().substr(0, 10)"></div>
                     <div class="scroll-current-orders" v-if="dataCurrent.data">
                         <div class="row" v-for="(datas, key) in dataCurrent.data" :key="key">
                             <div class="col-12">
@@ -57,16 +60,22 @@ import axios from 'axios';
 
 const dataCurrent = reactive({})
 const orderCurrentNow = ref(0)
-
+const datetimenow = ref(new Date().toISOString().substr(0, 10))
 const getHistory = async () => {
     axios.get(`/api/getHistory`, {
+        params: {
+            dateSearch: datetimenow.value
+        }
+
     })
         .then(response => {
             dataCurrent.data = response.data.dataCurrent
             orderCurrentNow.value = response.data.orderCurrentNow
         })
         .catch(error => {
-            alert(error);
+            dataCurrent.data = '';
+            orderCurrentNow.value = 0
+            // alert(error);
         });
 }
 getHistory()

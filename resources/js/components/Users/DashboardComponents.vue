@@ -21,11 +21,16 @@
                 </div>
             </div>
             <div class="col-6 col-md-4 my-2">
-                <div class="card custom-card">
-                    สินค้าทั้งหมด
-                    <hr class="my-0" />
-                    <div class="show-detail-card-dash">{{ productAll }}</div>
-                </div>
+                <a href="/manageproduct">
+                    <div class="card custom-card">
+                        สินค้าทั้งหมด
+                        <hr class="my-0" />
+                        <div class="show-detail-card-dash">{{ productAll }}</div>
+                        <small class="text-secondary text-center w-100 d-block">(คลิก)</small>
+                    </div>
+                    
+                </a>
+
             </div>
         </div>
     </div>
@@ -71,7 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div v-else>
                         <h5 class="text-center d-block text-primary py-2">ไม่มีออเดอร์ที่เปิดอยู่</h5>
@@ -118,9 +123,9 @@ const getDataDashboard = async () => {
     }
 }
 
-const getproductallCount = async() => {
+const getproductallCount = async () => {
     const response = await fetch('/api/getproductallCount')
-    if(response.ok) {
+    if (response.ok) {
         const data = await response.json()
 
         productAll.value = data.productAll
@@ -128,10 +133,10 @@ const getproductallCount = async() => {
 }
 
 function formatThaiDateTime(date) {
-  const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-  const dateString = date.toLocaleDateString("th-TH", options);
-  const timeString = date.toLocaleTimeString("th-TH");
-  return `${dateString} ${timeString}`;
+    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    const dateString = date.toLocaleDateString("th-TH", options);
+    const timeString = date.toLocaleTimeString("th-TH");
+    return `${dateString} ${timeString}`;
 }
 
 getDataDashboard()
@@ -140,6 +145,4 @@ fncCountdown()
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

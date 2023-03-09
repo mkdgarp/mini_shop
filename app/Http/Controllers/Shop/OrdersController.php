@@ -71,7 +71,7 @@ class OrdersController extends Controller
                     ->join('product', 'product.id', '=', 'orders_detail.product_id')
                     ->where('orders_detail.orders_id', $order_where->id)->get();
                 // $arr_current[$key_2] = $orders_detail;
-                
+
                 foreach ($orders_detail as $orders_details) {
                     $getprice = DB::table('product')->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')->where('product.id', $orders_details->product_id)->where('orders_detail.orders_id', $order_where->id)->get();
                     $total_price2 += $getprice->pluck('price')[0] * $orders_details->amount;
@@ -123,10 +123,11 @@ class OrdersController extends Controller
         ]);
     }
 
-    public function getproductallCount(){
-        $count_product_new = DB::table('product')->get();
-                $count_product = count($count_product_new);
-                return response()->json(['productAll'=>$count_product]);
+    public function getproductallCount()
+    {
+        $count_product_new = DB::table('product')->where('enable', 1)->get();
+        $count_product = count($count_product_new);
+        return response()->json(['productAll' => $count_product]);
     }
 
     public function getOrdersByID(Request $request)
@@ -136,10 +137,14 @@ class OrdersController extends Controller
             // ->whereDate('orders.create_at', NOW())
             // ->where('is_checkbill', 0)
             ->where('id', $request->ordersId)
+           
             ->get();
 
         $total_price2 = 0;
         $count_product = 0;
+        $total_price_owner_1 = 0;
+        $total_price_owner_2 = 0;
+        $total_price_owner_3 = 0;
         // $arr_product = [];
         foreach ($getOrderCurrent as $key_2 => $order_where) {
             if ($order_where->is_delivery == 0) {
@@ -149,7 +154,13 @@ class OrdersController extends Controller
                     ->where('orders_detail.orders_id', $order_where->id)->get();
                 // $arr_current[$key_2] = $orders_detail;
                 foreach ($orders_detail as $orders_details) {
-                    $getprice = DB::table('product')->select('product.price', 'product.id', 'product.name', 'orders_detail.amount')->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')->where('product.id', $orders_details->product_id)->where('orders_detail.orders_id', $order_where->id)->get();
+                    $getprice = DB::table('product')
+                        ->select('product.price', 'product.id', 'product.name', 'orders_detail.amount', DB::raw('owner_products.name as owner_name'))
+                        ->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')
+                        ->join('owner_products', 'owner_products.id', '=', 'product.owner_products')
+                        ->where('product.id', $orders_details->product_id)
+                        ->where('orders_detail.orders_id', $order_where->id)
+                        ->get();
                     $total_price2 += $getprice->pluck('price')[0] * $orders_details->amount;
 
                     $count_product += count($getprice);
@@ -159,7 +170,41 @@ class OrdersController extends Controller
                         'id' => $getprice->pluck('id')[0],
                         'name' => $getprice->pluck('name')[0],
                         'amount' => $getprice->pluck('amount')[0],
+                        'owner_name' => $getprice->pluck('owner_name')[0],
                     ];
+
+                    $getprice_owner_1 = DB::table('product')
+                        ->select('product.price', 'product.id', 'product.name', 'orders_detail.amount', DB::raw('owner_products.name as owner_name'))
+                        ->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')
+                        ->join('owner_products', 'owner_products.id', '=', 'product.owner_products')
+                        ->where('owner_products.id', 1)
+                        ->where('product.id', $orders_details->product_id)
+                        ->where('orders_detail.orders_id', $order_where->id)
+                        ->get();
+                    $getprice_owner_2 = DB::table('product')
+                        ->select('product.price', 'product.id', 'product.name', 'orders_detail.amount', DB::raw('owner_products.name as owner_name'))
+                        ->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')
+                        ->join('owner_products', 'owner_products.id', '=', 'product.owner_products')
+                        ->where('owner_products.id', 2)
+                        ->where('product.id', $orders_details->product_id)
+                        ->where('orders_detail.orders_id', $order_where->id)
+                        ->get();
+                    $getprice_owner_3 = DB::table('product')
+                        ->select('product.price', 'product.id', 'product.name', 'orders_detail.amount', DB::raw('owner_products.name as owner_name'))
+                        ->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')
+                        ->join('owner_products', 'owner_products.id', '=', 'product.owner_products')
+                        ->where('owner_products.id', 3)
+                        ->where('product.id', $orders_details->product_id)
+                        ->where('orders_detail.orders_id', $order_where->id)
+                        ->get();
+
+                    if (count($getprice_owner_1)) {
+                        $total_price_owner_1 += $getprice_owner_1->pluck('price')[0] * $orders_details->amount;
+                    } else if (count($getprice_owner_2)) {
+                        $total_price_owner_2 += $getprice_owner_2->pluck('price')[0] * $orders_details->amount;
+                    } else if (count($getprice_owner_3)) {
+                        $total_price_owner_3 += $getprice_owner_3->pluck('price')[0] * $orders_details->amount;
+                    }
                 }
                 $arr_current[] = [
                     'order_name' => $order_where->customers_name,
@@ -167,8 +212,12 @@ class OrdersController extends Controller
                     'order_id' => $orders_details->orders_id,
                     'total' => $total_price2,
                     'count_product' => $count_product,
-                    'is_checkbill' => $order_where->is_checkbill
+                    'is_checkbill' => $order_where->is_checkbill,
+                    'total_price_owner_1' => $total_price_owner_1,
+                    'total_price_owner_2' => $total_price_owner_2,
+                    'total_price_owner_3' => $total_price_owner_3,
                 ];
+
                 $total_price2 = 0;
                 $count_product = 0;
             } else { // delivery
@@ -180,8 +229,9 @@ class OrdersController extends Controller
                 // $arr_current[] = $orders_detail;
                 foreach ($orders_detail as $orders_details) {
                     $getprice = DB::table('product')
-                        ->select(DB::raw('product.delivery_price as price'), 'product.id', 'product.delivery_price', 'product.name', 'orders_detail.amount')
+                        ->select(DB::raw('product.delivery_price as price'), 'product.id', 'product.delivery_price', 'product.name', 'orders_detail.amount', DB::raw('owner_products.name as owner_name'))
                         ->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')
+                        ->join('owner_products', 'owner_products.id', '=', 'product.owner_products')
                         ->where('product.id', $orders_details->product_id)
                         ->where('orders_detail.orders_id', $order_where->id)
                         ->get();
@@ -194,7 +244,44 @@ class OrdersController extends Controller
                         'id' => $getprice->pluck('id')[0],
                         'name' => $getprice->pluck('name')[0],
                         'amount' => $getprice->pluck('amount')[0],
+                        'owner_name' => $getprice->pluck('owner_name')[0],
                     ];
+
+
+                    $getprice_owner_1 = DB::table('product')
+                        ->select(DB::raw('product.delivery_price as price'), 'product.id', 'product.delivery_price', 'product.name', 'orders_detail.amount', DB::raw('owner_products.name as owner_name'))
+                        ->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')
+                        ->join('owner_products', 'owner_products.id', '=', 'product.owner_products')
+                        ->where('owner_products.id', 1)
+                        ->where('product.id', $orders_details->product_id)
+                        ->where('orders_detail.orders_id', $order_where->id)
+                        ->get();
+
+                    $getprice_owner_2 = DB::table('product')
+                        ->select(DB::raw('product.delivery_price as price'), 'product.id', 'product.delivery_price', 'product.name', 'orders_detail.amount', DB::raw('owner_products.name as owner_name'))
+                        ->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')
+                        ->join('owner_products', 'owner_products.id', '=', 'product.owner_products')
+                        ->where('owner_products.id', 2)
+                        ->where('product.id', $orders_details->product_id)
+                        ->where('orders_detail.orders_id', $order_where->id)
+                        ->get();
+
+                    $getprice_owner_3 = DB::table('product')
+                        ->select(DB::raw('product.delivery_price as price'), 'product.id', 'product.delivery_price', 'product.name', 'orders_detail.amount', DB::raw('owner_products.name as owner_name'))
+                        ->join('orders_detail', 'orders_detail.product_id', '=', 'product.id')
+                        ->join('owner_products', 'owner_products.id', '=', 'product.owner_products')
+                        ->where('owner_products.id', 3)
+                        ->where('product.id', $orders_details->product_id)
+                        ->where('orders_detail.orders_id', $order_where->id)
+                        ->get();
+
+                    if (count($getprice_owner_1)) {
+                        $total_price_owner_1 += $getprice_owner_1->pluck('delivery_price')[0] * $orders_details->amount;
+                    } else if (count($getprice_owner_2)) {
+                        $total_price_owner_2 += $getprice_owner_2->pluck('delivery_price')[0] * $orders_details->amount;
+                    } else if (count($getprice_owner_3)) {
+                        $total_price_owner_3 += $getprice_owner_3->pluck('delivery_price')[0] * $orders_details->amount;
+                    }
                 }
                 $arr_current[] = [
                     'order_name' => $order_where->customers_name,
@@ -202,7 +289,10 @@ class OrdersController extends Controller
                     'order_id' => $orders_details->orders_id,
                     'total' => $total_price2,
                     'count_product' => $count_product,
-                    'is_checkbill' => $order_where->is_checkbill
+                    'is_checkbill' => $order_where->is_checkbill,
+                    'total_price_owner_1' => $total_price_owner_1,
+                    'total_price_owner_2' => $total_price_owner_2,
+                    'total_price_owner_3' => $total_price_owner_3,
 
                 ];
                 $total_price2 = 0;
@@ -231,12 +321,13 @@ class OrdersController extends Controller
         }
     }
 
-    public function getHistory()
+    public function getHistory(Request $request)
     {
         $getOrderCurrent = DB::table('orders')
             // ->join('orders_detail','orders_detail.orders_id','=','orders.id')
             // ->whereDate('orders.create_at', NOW())
             ->where('is_checkbill', 1)
+            ->whereDate('create_at', '=', $request->dateSearch)
             ->get();
 
         $total_price2 = 0;

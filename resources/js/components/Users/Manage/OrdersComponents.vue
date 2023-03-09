@@ -3,7 +3,9 @@
         <div class="row">
             <div class="col-12">
                 <span>จัดการออเดอร์ </span>
-                <span v-if="dataCurrent?.data" class=""><b class="text-primary" v-if="dataCurrent?.data[0]?.is_delivery == 0">โต๊ะ {{ dataCurrent?.data[0]?.order_name}}</b><b class="text-success" v-else>เดลิเวอรี่ {{ dataCurrent?.data[0]?.order_name}}</b></span>
+                <span v-if="dataCurrent?.data" class=""><b class="text-primary"
+                        v-if="dataCurrent?.data[0]?.is_delivery == 0">โต๊ะ {{ dataCurrent?.data[0]?.order_name }}</b><b
+                        class="text-success" v-else>เดลิเวอรี่ {{ dataCurrent?.data[0]?.order_name }}</b></span>
             </div>
 
 
@@ -50,8 +52,8 @@
 
                     <div class="py-2">สถานะออเดอร์
                         <span v-if="dataCurrent?.data[0]?.is_checkbill == 0"
-                            class="fw-bold text-danger">ยังไม่ชำระเงิน</span>
-                        <span v-else class="fw-bold text-success">ชำระเงินแล้ว</span>
+                            class="fw-bold text-danger">ยังไม่เช็คบิล</span>
+                        <span v-else class="fw-bold text-success">เช็คบิลแล้ว</span>
 
                     </div>
                     <table class="table table-bordered table-striped text-center align-middle">
@@ -87,7 +89,22 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">ยอดรวม</td>
+                                <td colspan="4" class="fw-bold text-primary">สรุปยอด</td>
+                            </tr>
+                            <tr v-if="dataCurrent?.data[0]?.total_price_owner_1">
+                                <td colspan="2">ส่วนกลาง</td>
+                                <td colspan="2" class="">{{ dataCurrent?.data[0]?.total_price_owner_1 }} ฿</td>
+                            </tr>
+                            <tr v-if="dataCurrent?.data[0]?.total_price_owner_2">
+                                <td colspan="2">หม่าล่า 99</td>
+                                <td colspan="2" class="">{{ dataCurrent?.data[0]?.total_price_owner_2 }} ฿</td>
+                            </tr>
+                            <tr v-if="dataCurrent?.data[0]?.total_price_owner_3">
+                                <td colspan="2">YakYen</td>
+                                <td colspan="2" class="">{{ dataCurrent?.data[0]?.total_price_owner_3 }} ฿</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="fw-bold">ยอดสุทธิ</td>
                                 <td colspan="2" class="text-success fw-bold">{{ dataCurrent?.data[0]?.total }} ฿</td>
                             </tr>
                         </tfoot>
@@ -95,9 +112,9 @@
                     <hr class="my-2">
                     <button v-if="dataCurrent?.data[0]?.is_checkbill == 0" class="btn btn-success"
                         @click="checkBillOrders(dataCurrent?.data[0]?.order_id)">เช็คบิล</button>
-                        <button v-else class="btn btn-primary">
-                            <i class="fas fa-print"></i>&nbsp;พิมพ์ใบเสร็จ
-                        </button>
+                    <button v-else class="btn btn-primary">
+                        <i class="fas fa-print"></i>&nbsp;พิมพ์ใบเสร็จ
+                    </button>
                 </div>
             </div>
         </div>
