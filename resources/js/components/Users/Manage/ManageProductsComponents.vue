@@ -81,7 +81,7 @@ const disableProduct = async (product_id,p_name) => {
                 .then(response => {
                     Swal.fire({
                         icon: 'success',
-                        html: `ลบสินค้า <span class='fw-bold text-primary'${p_name}</span> สำเร็จ `,
+                        html: `ลบสินค้า <span class='fw-bold text-primary'>${p_name}</span> สำเร็จ `,
                         showConfirmButton: false,
                         timer: 1500
                     }).then(resp => {

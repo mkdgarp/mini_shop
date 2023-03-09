@@ -20351,7 +20351,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                           }).then(function (response) {
                             Swal.fire({
                               icon: 'success',
-                              html: "\u0E25\u0E1A\u0E2A\u0E34\u0E19\u0E04\u0E49\u0E32 <span class='fw-bold text-primary'".concat(p_name, "</span> \u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08 "),
+                              html: "\u0E25\u0E1A\u0E2A\u0E34\u0E19\u0E04\u0E49\u0E32 <span class='fw-bold text-primary'>".concat(p_name, "</span> \u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08 "),
                               showConfirmButton: false,
                               timer: 1500
                             }).then(function (resp) {
