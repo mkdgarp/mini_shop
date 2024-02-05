@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Index from "../components/Index.vue"
 import Home from "../components/Users/Home.vue"
+import MainPages from "../components/Users/MainPages.vue"
 import OrdersComponents from "../components/Users/Manage/OrdersComponents.vue"
 import NewOrdersComponents from "../components/Users/Manage/NewOrdersComponents.vue"
 import AddNewProductsComponenets from "../components/Users/Manage/AddNewProductsComponenets.vue"
@@ -10,8 +11,13 @@ import HomeManageProductComponents from "../components/Users/Manage/HomeManagePr
 
 const routes = [
     {
-        path: '/',
+        path: '/home',
         component: Home,
+        
+    },
+    {
+        path: '/MainPages',
+        component: MainPages,
         
     },
     {

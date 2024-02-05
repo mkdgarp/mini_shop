@@ -11,5 +11,7 @@ class Users extends Controller
     {
         $this->middleware('auth');
     }
+
+    
     //
 }

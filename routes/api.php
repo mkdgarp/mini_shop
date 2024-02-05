@@ -46,3 +46,6 @@ Route::middleware('api')->get('/getHistory', [OrdersController::class, 'getHisto
 Route::middleware('api')->get('/getAllProduct_Manage', [ProductsController::class, 'getAllProduct_Manage']);
 
 Route::middleware('api')->post('/disableProduct', [ProductsController::class, 'disableProduct']);
+
+
+Route::middleware('api')->get('/getImages', [ProductsController::class, 'getImages']);

@@ -1,9 +1,9 @@
 <template>
-    <HeaderComponents />
+    <!-- <HeaderComponents /> -->
     <section class="main-section">
         <router-view></router-view>
     </section >
-    <FooterComponents />
+    <!-- <FooterComponents /> -->
 </template>
 
 <script setup>

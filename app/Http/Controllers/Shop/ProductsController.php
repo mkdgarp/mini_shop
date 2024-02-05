@@ -63,4 +63,75 @@ class ProductsController extends Controller
 
         return response()->json($owners);
     }
+
+    public function getImages(Request $request)
+    {
+        $req = $request->req;
+        $imageUrl = $request->imageUrl;
+        if ($req == 'raw' && $imageUrl == '') {
+            try {
+                // return 555;
+                // Fetch the image from Google Drive
+                $image_url = 'https://drive.google.com/uc?id=1v-PdE4P_Xufr1wvMewxrblYxoXvBJCSa';
+                $image_data = file_get_contents($image_url);
+
+                // Set response headers including Content-Type
+                return response()->make($image_data, 200, ['Content-Type' => 'image/jpeg']);
+            } catch (\Exception $e) {
+                // Handle errors
+                return response('Internal Server Error', 500);
+            }
+        } else if ($req == 'base64' && $imageUrl == '') {
+            try {
+                // Fetch the image from Google Drive
+                $image_url = 'https://drive.google.com/uc?id=1v-PdE4P_Xufr1wvMewxrblYxoXvBJCSa';
+                $image_data = file_get_contents($image_url);
+
+                // Convert image data to base64
+                $base64_image = base64_encode($image_data);
+
+                // Generate the data URI for embedding the image
+                $data_uri = 'data:image/jpeg;base64,' . $base64_image;
+
+                // Return the data URI
+                return response()->json(['image_uri' => $data_uri]);
+            } catch (\Exception $e) {
+                // Handle errors
+                // \Log::error('Error fetching image: ' . $e->getMessage());
+                return response()->json(['error' => 'Internal Server Error'], 500);
+            }
+        } else if ($req == 'base64' && $imageUrl != '') {
+            try {
+                // Fetch the image from Google Drive
+                $image_url = $imageUrl;
+                $image_data = file_get_contents($image_url);
+
+                // Convert image data to base64
+                $base64_image = base64_encode($image_data);
+
+                // Generate the data URI for embedding the image
+                $data_uri = 'data:image/jpeg;base64,' . $base64_image;
+
+                // Return the data URI
+                return response()->json(['image_uri' => $data_uri]);
+            } catch (\Exception $e) {
+                // Handle errors
+                // \Log::error('Error fetching image: ' . $e->getMessage());
+                return response()->json(['error' => 'Internal Server Error'], 500);
+            }
+        } else if ($req == 'raw' && $imageUrl != '') {
+            try {
+                // return 555;
+                // Fetch the image from Google Drive
+                $image_url = $imageUrl;
+                $image_data = file_get_contents($image_url);
+
+                // Set response headers including Content-Type
+                return response()->make($image_data, 200, ['Content-Type' => 'image/jpeg']);
+            } catch (\Exception $e) {
+                // Handle errors
+                return response('Internal Server Error', 500);
+            }
+        }
+    }
 }
